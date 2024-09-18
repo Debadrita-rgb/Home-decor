@@ -1,0 +1,177 @@
+body{
+    overflow-x: hidden;
+    background-color: #e9ecef;
+}
+.remove-bullets{
+    list-style: none;
+}
+.nav-margin{
+    margin-right: 18px;
+    margin-top: 7px;
+}
+.anchor{
+    text-decoration: none;
+}
+/* header */
+.header-ul{
+    margin-left: 160px;
+}
+.header-li{
+    margin-right:25px;
+}
+/* end header */
+/* start index */
+.index_cat-img{
+    height: 120px;
+    width: 120px;
+    border-radius: 57px;
+    margin-left:38px;
+}
+.index-cat-p{
+    text-align: center;
+}
+.card-center{
+    text-align: center;
+}
+.card-image{
+    height: 100px;
+    width: 101px;
+}
+.main-card{
+    width: 300px;
+    margin-right: 30px;
+}
+
+/* .child {
+    background-color: rgba(220,220,220,.5);
+    padding: 18px;  
+    height: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  } */
+
+/* grid carousel index */
+.carousels {
+    margin: 0 auto;
+    /* max-width: 1024px; */
+    background: #e9ecef;
+    overflow: hidden;
+}
+.grid {
+    display: grid;
+    grid-auto-flow: column;
+    transition: 0.2s all ease-in;
+}
+.content {
+    background: #fafafa;
+    padding: 16px 0;
+    border: 0px;
+}
+.content-img{
+    height: 325px;
+}
+.controls {
+    display: flex;
+    justify-content: space-between;
+}
+/* overlay image */
+.top-pick {
+    position: relative;
+    border: solid 1px black;
+    /* width: 50%; */
+} 
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    /* background-color: #008CBA; */
+}  
+.top-pick:hover .overlay {
+    opacity: 1;
+}
+/* Best Seller   */
+.gm-target{
+    text-decoration: none;
+}
+.gm-text{
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-align: left;
+
+}
+.heart-text{
+    margin-left: 200px;
+}
+/* footer */
+.footer-link{
+    font-size: 27px;
+}
+/* product details page  */
+.product-detail-image{
+    height: 320px;
+    width: 320px;
+}
+.product__title {
+    font-size: 35px; 
+    margin-bottom: 0;
+}
+.product__price--regular {
+    margin: 0 6px 8px 0;
+    color: #00badb;
+    font-size: 20px;
+    font-weight: bold;    
+}
+.dropdown-form{
+    width: 20%;
+    /* text-align: center; */
+}
+.product-description {
+    line-height: inherit;
+    margin-block-start: 0;
+}
+.shipping_image{
+    height: 50%;
+}
+.shipping_p{
+    text-align: center; 
+}
+.shipping-row{
+    margin-bottom: -135px;
+    margin-top:115px
+}
+/* my address page */
+.my_address-p{
+    margin-left: 2%;
+    border: 1px solid;
+}
+.my_address-a{
+    margin-left: 7%;
+    margin-right: 7%;
+}
+/* Sticky notes */
+.whats-app {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    right: 18px;
+}

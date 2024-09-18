@@ -1,0 +1,43 @@
+
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+
+<br>
+<div class="row mt-3">
+    <div class="col-sm-6 shadow p-4 mx-auto">
+        <h2 style="text-align: center;">Contact</h2>
+        {% if success_msg %}
+            <div id="alerts" class="alert alert-success" role="alert">{{success_msg}}
+            </div>
+        {% endif %}
+        
+        <form method="POST" action="/contact">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="input-username" class="form-label"><strong>Name</strong></label>
+                <input type="text" name="uname" class="form-control" id="input-username" placeholder="Enter Name">
+            </div><!--username ends-->
+            <div class="mb-3">
+                <label for="input-mobile" class="form-label"><strong>Mobile</strong></label>
+                <input type="number" name="umob" class="form-control" id="input-mobile" placeholder="Enter Mobile">
+            </div><!--password ends-->
+            <div class="mb-3">
+                <label for="input-email" class="form-label"><strong>Email</strong></label>
+                <input type="email" name="umail" class="form-control" id="input-email" placeholder="Enter Email">
+            </div><!--password ends-->
+            <div class="mb-3">
+                <label for="input-message" class="form-label"><strong>Query</strong></label>
+                <textarea name="umsg" id="input-message" class="form-control"></textarea>
+                <!-- <input type="te" name="umail"  id="input-confirmpassword" placeholder="Enter User Confirm Password"> -->
+            </div><!--password ends-->
+            <div class="mb-3">
+                <input type="submit" class="btn btn-primary" value="Submit">
+                
+            </div>
+            
+        </form>
+    </div>
+</div> 
+<br>
+{% endblock 'main' %}

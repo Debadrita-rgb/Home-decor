@@ -1,0 +1,175 @@
+
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+
+<!-- start address div -->
+<div class="row mt-3">
+    <div class="col-sm-10 mt-3">
+        <p>My Addresses</p>
+        {% if successmsg %}
+          <br><div id="alerts" class="alert alert-success">{{successmsg}}</div>
+        {% endif %}
+        {% if errmsg %}
+          <br><div id="alerts" class="alert alert-danger">{{errmsg}}</div>
+        {% endif %}
+
+        <div class="row">
+            {% for add in address %}
+            <div class="col-sm-3 my_address-p">                        
+                <p>Name: {{add.name}}</p>
+                <p>Email: {{add.email_address}}</p>
+                <p>Address1: {{add.city}},{{add.state}},{{add.country}},<br>{{add.postal_code}}</p>
+                <p>Phone: {{add.phone_number}}</p>
+                <div class="form-check">    
+                    <a class="anchor" href="/deleteaddress/{{add.id}}"><i class="bi bi-trash"></i></a>
+                    {% if add.is_default == 0 %}
+                        <a class="anchor my_address-a" href="/setasdefault/{{add.id}}">Set as default</a> 
+                    {% else %}
+                        <a class="anchor my_address-a" href="#">Default Address</a>
+                    {% endif %}
+                    <a href="/edit_address/{{add.id}}" class="anchor" data-bs-toggle="modal" data-bs-target="#exampleeditModalid{{add.id}}"><i class="bi bi-pencil"></i></a>                            
+                </div>                         
+            </div><!--end col-sm-3-->
+
+
+            <!-- Modal  for edit address-->
+<div class="modal fade" id="exampleeditModalid{{add.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Address{{add.id}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="#">
+                <div class="mb-3">
+                    <label for="exampleFormControlname" class="form-label">Name</label>
+                    <input type="text" value="{{add.name}}" aria-colcount="name" class="form-control" id="exampleFormControlname">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Address</label>
+                    <textarea name="address" class="form-control" id="exampleFormControlTextarea1" rows="3">{{add.address}}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlemail" class="form-label">Email address</label>
+                    <input name="email" type="email" readonly class="form-control" id="exampleFormControlemail" value={{add.email_address}}>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlcity" class="form-label">City</label>
+                    <input name="city" type="text" class="form-control" id="exampleFormControlcity" value="{{add.city}}">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlstate" class="form-label">State</label>
+                    <select name="state" class="form-control" id="exampleFormControlstate">
+                        <option value="Maharashtra" {%if add.state == 'Maharashtra' %}selected{% endif %}>Maharashtra</option>
+                        <option value="West Bengal" {%if add.state == 'West Bengal' %}selected{% endif %}>West Bengal</option>
+                        <option value="Goa" {%if add.state == 'Goa' %}selected{% endif %}>Goa</option>
+                    </select>
+                    
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlpostal" class="form-label">Postal Code</label>
+                    <input name="postal" type="number" class="form-control" id="exampleFormControlpostal" value="{{add.postal_code}}">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlcountry" class="form-label">Country</label>
+                    <input name="country" type="text" class="form-control" id="exampleFormControlcountry" value="{{add.country}}">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormphone" class="form-label">Phone Number</label>
+                    <input value="{{add.phone_number}}" name="phone" type="number" class="form-control" id="exampleFormphone">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+
+            {% endfor %}
+            <!-- <div class="col-sm-3 my_address-p">
+                <p>Name: Debadrita Paul</p>
+                <p>Email:abc@gmail.com</p>
+                <p>Address1: Pune,Pune,Maharashtra,India,<br>7123654</p>
+                <p>Phone: 7896541230</p>
+                <div class="form-check">    
+                    <a class="anchor" href="#"><i class="bi bi-trash"></i></a>
+                    <a class="anchor my_address-a" href="#">Set as default</a>                        
+                    <a class="anchor" data-bs-toggle="modal" data-bs-target="#exampleeditModalid2"><i class="bi bi-pencil"></i></a>  
+                </div>
+            </div>end col-sm-3 -->
+        </div><!--end inner row-->
+    </div><!--end col-10-->
+    <div class="col-sm-2 mt-3">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add New Address
+        </button>
+    </div>
+</div>
+<!-- create address Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Address</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="/my_address">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleFormControlname" class="form-label">Name</label>
+                    <input type="text" name="uname" class="form-control" id="exampleFormControlname" value="{{user.first_name}}">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Address</label>
+                    <textarea name="address" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlemail" class="form-label">Email address</label>
+                    <input name="email" readonly type="email" class="form-control" id="exampleFormControlemail" value="{{user.email}}">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlcity" class="form-label">City</label>
+                    <input name="city" type="text" class="form-control" id="exampleFormControlcity" placeholder="Enter City">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlstate" class="form-label">State</label>
+                    <select name="state" class="form-control" id="exampleFormControlstate">
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="West Bengal">West Bengal</option>
+                        <option value="Goa">Goa</option>
+                    </select>
+                    
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlpostal" class="form-label">Postal Code</label>
+                    <input name="postal" type="number" class="form-control" id="exampleFormControlpostal" placeholder="Enter Your Postal Code">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlcountry" class="form-label">Country</label>
+                    <input name="country" type="text" class="form-control" id="exampleFormControlcountry" placeholder="Enter Your Country">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormphone" class="form-label">Phone Number</label>
+                    <input name="phone" type="number" class="form-control" id="exampleFormphone" placeholder="Enter Your Phone Number">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+    </div>
+</div>
+<!-- end address -->
+
+
+
+{% endblock 'main' %}

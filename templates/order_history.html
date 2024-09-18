@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+
+<!-- start order order_history -->
+<div class="row mt-3">
+    {% for oh in order_history %}
+    <div class="col-sm-3">
+      <div class="card" style="width: 18rem;">
+        <img src="{{oh.pid.image1.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{oh.pid.pname}}</h5>
+          <a href="/addtocart/{{oh.pid.id}}" class="btn btn-primary">Again Order</a>
+        </div>
+      </div>
+    </div><!--end col-->
+    {% endfor %}
+    <!-- <div class="col-sm-3">
+      <div class="card" style="width: 18rem;">
+        <img src="assets/images/mobile1.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Vivo</h5>
+          <a href="#" class="btn btn-primary">Again Order</a>
+        </div>
+      </div>
+    </div>end col
+    <div class="col-sm-3">
+      <div class="card" style="width: 18rem;">
+        <img src="assets/images/mobile1.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Vivo</h5>
+          <a href="#" class="btn btn-primary">Again Order</a>
+        </div>
+      </div>
+    </div>end col
+    <div class="col-sm-3">
+      <div class="card" style="width: 18rem;">
+        <img src="assets/images/mobile1.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Vivo</h5>
+          <a href="#" class="btn btn-primary">Again Order</a>
+        </div>
+      </div>
+    </div>end col -->
+  </div><!--end row-->
+
+
+{% endblock 'main' %}

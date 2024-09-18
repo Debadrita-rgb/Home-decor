@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+
+<style>
+    .input-type-control{
+        width:10%
+    }
+    .button-class{
+        border-radius: 35px;
+    }
+</style>
+<!--main content start-->
+<div class="row mt-3">
+    <div class="col-sm-9">
+    {% for x in data %}
+      <div class="row mt-4">
+        <div class="col-md-4">
+            <a href="/product_detail/{{x.pid.id}}">
+                <img src="{{x.pid.image1.url}}" class="card-img-top" alt="mobile" height="250px">
+            </a>
+            </div>
+        <div class="col-md-8">
+            <p><strong>Product Name: </strong>{{x.pid.pname}}</p>
+            <p><strong>Price: </strong>Rs. {{x.pid.price}}</p>
+                            
+            <!-- <p><strong>Category: </strong>{{x.pid.category}}</p> -->
+            <p><strong>Product Description: </strong>{{x.pid.description|slice:":100"}}</p>
+            <p>
+                <strong>Qty: </strong>
+                <a href="/updateqty/0/{{x.id}}"><button class="btn btn-danger">-</button></a>
+                <input readonly style="text-align: center;" class="input-type-control" type="number" name="qty" value="{{x.qty}}">
+                <a href="/updateqty/1/{{x.id}}"><button class="btn btn-success">+</button></p>
+            </p>
+            <a href="/remove/{{x.id}}"><button class="btn btn-danger button-class">Remove</button></a>&nbsp;
+        </div>
+    </div>
+    {% endfor %}
+    </div><!--end col-sm-10-->
+    <div class="col-sm-3">
+      <h5 class="bg-danger text-white p-2">Total Amount</h5>
+          <p><strong>Total({{no_of_items}} items)</strong>Rs. {{total}}</p><hr>
+          <p><strong>Total Amount: </strong> Rs. {{total}}</p>
+          <a href="/place_order" class="btn btn-warning button-class">Processd To buy</a>
+    </div><!--col-sm-2 end-->
+  </div><!--row end-->
+
+
+{% endblock 'main' %}

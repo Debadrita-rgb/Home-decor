@@ -1,0 +1,65 @@
+{% load static %}
+<a  class="whats-app" href="#" target="_blank">
+  <i class="fa fa-whatsapp my-float"></i>
+</a>
+<!-- start footer -->
+<div class="row mt-3 bg-light">
+    <div class="col-sm-4">
+        <h5 class="ms-5">Address</h5>
+        <hr>
+        <div class="ms-5">
+        2nd floor landmark building<br>
+        Near FC Road<br>
+        Shivaji Nagar Pune<br>
+        <p><i class="bi bi-telephone-fill"></i> : 7896541230</p>
+        <p><i class="bi bi-envelope-fill"></i> : abc@gmail.com</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+        <h5>Quick Links</h5><hr>
+        <!-- <p><a href="blog.html" class="anchor">Blog</a></p> -->
+        <p><a style="text-decoration: none;" href="/contact" class="anchor">Contact Us</a></p>
+        <p><a style="text-decoration: none;" href="/about" class="anchor">About Us</a></p>
+        <p><a style="text-decoration: none;" href="/privacy" class="anchor">Privacy Policy</a></p>              
+    </div>
+    <div class="col-sm-4">
+        <h5>Sign up to our newsletter</h5><hr>
+        <p>Join the this family and be the first to know about the latest online shopping offers, deals, sales, products, and much more by signing up for the Newsletter.</p>
+        <form method="POST" action="/newsletter">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input type="email" name="emails" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            <button value="submit" name="submit" class="btn btn-success">Submit</button>
+          </div>
+        </form>
+        {% if success_msg %}
+                <div id="alerts" class="alert alert-success" role="alert">{{success_msg}}
+                </div>
+            {% endif %}
+        <a href="http://www.facebook.com" target="_blank" class="anchor footer-link"><i class="bi bi-facebook text-danger"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="http://www.instagram.com" target="_blank" class="anchor footer-link"><i class="bi bi-instagram"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="http://www.twitter.com" target="_blank" class="anchor footer-link"><i class="bi bi-twitter"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="http://www.linkedin.com" target="_blank" class="anchor footer-link"><i class="bi bi-linkedin"></i></a></h5>
+    </div>
+  </div>
+  <!-- end footer -->
+</div>
+
+
+
+<script src="{% static 'assets/js/popper.min.js' %}"></script>
+<script src="{% static 'assets/js/grid.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/fc557c6c08.js" crossorigin="anonymous"></script>	
+<script>
+  setTimeout(function() {
+    $('#alerts').delay(1000).fadeOut(200);
+}, 1000);
+
+</script>
+
+
+</body>
+</html>

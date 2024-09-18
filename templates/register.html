@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+
+<div class="row mt-3">
+    <div class="col-sm-4 p-4 mx-auto">
+        <h2 style="text-align: center;">Create Account</h2>
+        {% if errmsg %}
+            <div id="alerts" class="alert alert-danger" role="alert">{{errmsg}}
+            </div>
+        {% endif %}
+                
+        <form method="POST" action="/register" autocomplete="off">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="input-name" class="form-label"><strong>Name:</strong></label>
+                <input type="text" name="uname" class="form-control" id="input-name" placeholder="Enter Name">
+            </div><!--name ends-->
+            <div class="mb-3">
+                <label for="input-username" class="form-label"><strong>Email:</strong></label>
+                <input type="email" name="uemail" class="form-control" id="input-username" placeholder="Enter User Email">
+            </div><!--username ends-->
+            <div class="mb-3">
+                <label for="input-password" class="form-label"><strong>Password:</strong></label>
+                <input type="password" name="upassword" class="form-control" id="input-password" placeholder="Enter User Password">
+            </div><!--password ends-->
+            <div class="mb-3">
+                <label for="input-confirmpassword" class="form-label"><strong>Confirm Password:</strong></label>
+                <input type="password" name="cpassword" class="form-control" id="input-confirmpassword" placeholder="Enter User Confirm Password">
+            </div><!--password ends-->
+            <div class="mb-3" style="text-align: center;">
+                <input type="submit" class="btn btn-primary" value="Register">
+                <p style="margin-top: 7px;">Already User ? <a style="text-decoration: none;" href="/login">Login</a></p>
+            </div>
+            {% if successmsg %}
+                <div id="alerts" class="alert alert-success" role="alert">{{successmsg}}
+                </div>
+            {% endif %}
+        </form>
+    </div>
+</div>
+
+
+{% endblock 'main' %}

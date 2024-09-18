@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+<!--Category Content start-->
+        <div class="row mt-3">
+            {% for ct in categorys %}
+          <div class="col-sm-2"><a href="/category_details/{{ct.id}}" class="anchor" style="text-decoration: none;" >
+            <centre><img class="index_cat-img" src="{{ct.cat_image.url}}"></centre>
+            <p class="index-cat-p">{{ct.cat_name}}</p></a>
+          </div>
+          {% endfor %} 
+            <!-- <div class="col-sm-2"><a href="category_details.html" class="anchor">
+              <centre><img class="index_cat-img" src="assets/images/index-cat.jpg"></centre>
+              <p class="index-cat-p">Decor</p></a>
+            </div>
+            <div class="col-sm-2"><a href="category_details.html" class="anchor">
+              <centre><img class="index_cat-img" src="assets/images/index-cat.jpg"></centre>
+              <p class="index-cat-p">Decor</p></a>
+            </div>
+            <div class="col-sm-2"><a href="category_details.html" class="anchor">
+              <centre><img class="index_cat-img" src="assets/images/index-cat.jpg"></centre>
+              <p class="index-cat-p">Decor</p></a>
+            </div>
+            <div class="col-sm-2"><a href="category_details.html" class="anchor">
+              <centre><img class="index_cat-img" src="assets/images/index-cat.jpg"></centre>
+              <p class="index-cat-p">Decor</p></a>
+            </div>
+            <div class="col-sm-2"><a href="category_details.html" class="anchor">
+              <centre><img class="index_cat-img" src="assets/images/index-cat.jpg"></centre>
+              <p class="index-cat-p">Decor</p></a>
+            </div>           -->
+          </div>
+          <!--category content end-->
+        <!--start product section-->  
+
+        <div class="row mt-3">
+            <div class="col-sm-2">
+                <h5>Filter By Price Range</h5><hr> 
+                <form action="/category_details/{{cat_id}}/range">
+                    <div class="mb-3">
+                        <label for="min_value" class="form-label">Minimum Value</label>
+                        <input type="number" name="min" class="form-control" id="min_value" placeholder="Minimum Value">
+                    </div>
+                    <div class="mb-3">
+                        <label for="max_value" class="form-label">Maximum Value</label>
+                        <input type="number" class="form-control" name="max" id="max_value" placeholder="Maximum Value">
+                    </div>
+                    <div class="mb-3">
+                        <input type="submit" class="btn btn-danger" value="Submit">
+                    </div>
+                </form>
+                <h5>Sort By Price</h5>
+                <hr>
+                <p><a href="/category_details/{{cat_id}}/sort/0" class="anchor">Low to High</a></p>
+                <p><a href="/category_details/{{cat_id}}/sort/1" class="anchor">High to Low</a></p>
+        </div><!--filter section end-->  
+        
+        <div class="col-md-10">
+                <h5>Products</h5><hr>
+                <div class="row">
+                  {% for p in products %}
+                    <div class="col-md-4 mt-3">
+                        <div class="card" style="width: 100%;">
+                          <a href="/product_detail/{{p.id}}">
+                          <img src="{{p.image1.url}}" class="card-img-top" alt="..."></a>
+                            <div class="card-body">
+                              <h5 class="card-title">{{p.pname}}</h5>
+                              <p class="card-text">Rs. {{p.price}}</p>
+                              <a href="/product_detail/{{p.id}}" class="btn btn-danger">See Details</a>
+                              <!-- <a href="/addtocart_cat/{{p.id}}/{{cat_id}}"><i class="bi bi-cart-fill"></i>Add to Cart</a> -->
+
+                              {% if success_msg %}
+                              <div aria-live="polite" aria-atomic="true" class="position-relative">
+                                <div class="toast-container top-0 end-0 p-3">
+
+                                  <!-- Then put toasts within -->
+                                  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                    <!-- <div class="toast-header">
+                                      <img src="..." class="rounded me-2" alt="...">
+                                      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                    </div> -->
+                                    <div class="toast-body">
+                                      {{success_msg}}
+                                    </div>
+                                  </div>
+                                  </div>
+                              </div>
+                              {% endif %}
+
+
+                              {% if errmsg %}
+                              <div aria-live="polite" aria-atomic="true" class="position-relative">
+                                <div class="toast-container top-0 end-0 p-3">
+
+                                  <!-- Then put toasts within -->
+                                  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                    <!-- <div class="toast-header">
+                                      <img src="..." class="rounded me-2" alt="...">
+                                      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                                    </div> -->
+                                    <div class="toast-body">
+                                      {{errmsg}}
+                                    </div>
+                                  </div>
+                                  </div>
+                              </div>
+                              {% endif %}
+                            </div>
+                        </div>
+                    </div><!--product 1 end-->
+                    {% endfor %}
+                    
+
+                </div><!--product row-->
+            </div><!--product section end-->
+
+        </div>
+        <!-- end product section -->
+         
+{% endblock 'main' %}

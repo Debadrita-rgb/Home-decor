@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+
+<style>
+  .carousel-inner img {
+      width: 100%;
+      height: 500px;
+  }
+
+  #custCarousel .carousel-indicators {
+      position: static;
+      margin-top:20px;
+  }
+
+  #custCarousel .carousel-indicators > li {
+      width:100px;
+  }
+
+  #custCarousel .carousel-indicators li img {
+      display: block;
+      opacity: 0.5;
+      height:100px;
+  }
+
+  #custCarousel .carousel-indicators li.active img {
+      opacity: 1;
+  }
+
+  #custCarousel .carousel-indicators li:hover img {
+      opacity: 0.75;
+  }
+
+  .carousel-item img{
+      width:80%;
+  }
+</style>
+
+<!-- Main-Slideelement -->
+<div class="row mt-3">
+  <div class="col-sm-6">
+      <div id="custCarousel" class="carousel slide" data-ride="carousel" align="center">
+          <!-- slides -->
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="{{p.image1.url}}" alt="Hills">
+            </div>
+  
+            <div class="carousel-item">
+              <img src="{{p.image2.url}}" alt="Hills">
+            </div>
+  
+            <div class="carousel-item">
+              <img src="{{p.image3.url}}" alt="Hills">
+            </div>
+  
+            <div class="carousel-item">
+              <img src="{{p.image4.url}}" alt="Hills">
+            </div>
+          </div>
+  
+          <!-- Left right -->
+          <a class="carousel-control-prev" href="#custCarousel" data-slide="prev">
+            <span class="carousel-control-prev-icon" style="background-color: black;"></span>
+          </a>
+          <a class="carousel-control-next" href="#custCarousel" data-slide="next">
+            <span class="carousel-control-next-icon" style="background-color: black;"></span>
+          </a>
+  
+          <!-- Thumbnails -->
+          <ol class="carousel-indicators list-inline">
+            <li class="list-inline-item active">
+              <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#custCarousel">
+                <img src="{{p.image1.url}}" class="img-fluid">
+              </a>
+            </li>
+  
+            <li class="list-inline-item">
+              <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel">
+                <img src="{{p.image2.url}}" class="img-fluid">
+              </a>
+            </li>
+  
+            <li class="list-inline-item">
+              <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel">
+                <img src="{{p.image3.url}}"  class="img-fluid">
+              </a>
+            </li>
+  
+             <li class="list-inline-item">
+              <a id="carousel-selector-2" data-slide-to="3" data-target="#custCarousel">
+                <img src="{{p.image4.url}}"  class="img-fluid">
+              </a>
+            </li>
+           </ol>
+        </div>
+  </div><!--end col-sm-6-->
+<!-- Thumb-Slider-Element ends -->
+     
+    <div class="col-sm-6">
+        <p><h1 class="product__title">{{p.pname}}</h1></p>
+        <p><span class="product__price--regular ">₹{{p.price}}</span> &nbsp;&nbsp;&nbsp;&nbsp;<del>₹{{p.actual_price}}</del></p>
+        <p>SKU - {{p.sku}}</p>
+        <!-- <p>Quantity</p>
+        <select name="quantity" class="form-control dropdown-form">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option> 
+        </select><br> -->
+        <a href="/addtocart/{{p.id}}"><button class="btn btn-danger">Add to Cart</button></a>&nbsp;
+        <a href="/addtowishlist/{{p.id}}" class="btn btn-danger">Add To Wishlist</a>&nbsp;
+        <a href="/view_cart" class="btn btn-danger">View Cart</a>
+        <br><br>
+        {% if success %}
+          <br><div id="alerts" class="alert alert-success">{{success}}</div>
+        {% endif %}
+        {% if errmsg %}
+          <br><div id="alerts" class="alert alert-danger">{{errmsg}}</div>
+        {% endif %}
+        <div class="">
+        <!-- <p><strong>Elegant White and Gold Ceramic Vase</strong><br></p> -->
+        <p class="product-description">{{p.description}}
+        </div>
+    </div><!--end product details-->
+    
+</div><!--end row-->
+    
+<!-- free shipping box -->
+<div class="row shipping-row">
+    <div class="col-sm-3">
+        <img src="{% static 'assets/images/free_shipping.jpg' %}" class="shipping_image">
+        <p class="shipping_p">Free Shipping</p>
+    </div>
+    <div class="col-sm-3">
+        <img src="{% static 'assets/images/free_shipping.jpg' %}" class="shipping_image">
+        <p class="shipping_p">Free Shipping</p>
+    </div>
+    <div class="col-sm-3">
+        <img src="{% static 'assets/images/free_shipping.jpg' %}" class="shipping_image">
+        <p class="shipping_p">Free Shipping</p>
+    </div>
+    <div class="col-sm-3">
+        <img src="{% static 'assets/images/free_shipping.jpg' %}" class="shipping_image">
+        <p class="shipping_p">Free Shipping</p>
+    </div>
+</div>
+<!-- end free shipping box -->
+
+
+{% endblock 'main' %}

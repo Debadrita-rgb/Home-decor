@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Mail User</title>
+    <style>
+        .btnp {
+          
+          height: 500px;
+          position: relative;
+        }
+    
+        .btn-v {
+            margin-top: 35px;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container-fluid btnp">
+        <div class="btn-v">
+            <img height="450px" src="{% static 'assets/images/check right.jpg' %}">
+            <p style="text-align:center;font-weight:bolder">Your order Succesfully done</p>
+        </div>           
+                
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            setInterval(function() {
+                document.location='/'
+            }, 3000);
+            });
+    </script>
+</body>
+</html>

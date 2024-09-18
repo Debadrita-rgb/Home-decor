@@ -1,0 +1,35 @@
+
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+
+
+<div class="row mt-3">
+    <div class="col-sm-4 p-4 mx-auto">
+        <h2 style="text-align: center;">Log In</h2>
+        {% if errmsg %}
+            <div id="alerts" class="alert alert-danger" role="alert">{{errmsg}}
+            </div>
+        {% endif %}
+        
+        <form method="POST" action="/login">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="input-username" class="form-label"><strong>Email:</strong></label>
+                <input type="email" name="uemail" class="form-control" id="input-username" placeholder="Enter User Email">
+            </div><!--username ends-->
+            <div class="mb-3">
+                <label for="input-password" class="form-label"><strong>Password:</strong></label>
+                <input type="password" name="upass" class="form-control" id="input-password" placeholder="Enter User Password">
+            </div><!--password ends-->
+            <div class="mb-3" style="text-align: center;">
+                <input type="submit" class="btn btn-primary" value="Sign in">                        
+                <!-- <p style="margin-top: 7px;"><a href="" class="anchor">Forgot your Password?</a></p> -->
+                <p style="margin-top: 7px;">Not an user ? <a style="text-decoration: none;" href="/register">Register</a></p>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+{% endblock 'main' %}
